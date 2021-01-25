@@ -1,10 +1,9 @@
-# Get Player list
-get_playerList <- function(projectURL){
-  playerList <- firebase_download(projectURL, path='players')
-  return(playerList)
-}
 
-# Function to add player to the playerList
+get_playerList <- function(){
+  playerList <- firebase_download(path='players')
+  return(playerList)
+} # Get Player list
+
 add_player <- function(playerList, firstName, lastName, nickname){
   
   # Count existing players
@@ -12,7 +11,6 @@ add_player <- function(playerList, firstName, lastName, nickname){
   
   # Create player ID
   playerID <- paste0('P', sprintf("%03d", n))
-  
   
   # Add player to player List
   playerList[[playerID]] <- list(
@@ -24,11 +22,10 @@ add_player <- function(playerList, firstName, lastName, nickname){
   
   # Return player list
   return(playerList)
-} 
+} # Function to add player to the playerList
 
-# Save player list
-update_playerList <- function(projectURL, playerList){
-  firebase_save(projectURL, path="players", playerList)
-}
+update_playerList <- function(playerList){
+  firebase_save(path="players", playerList)
+} # Save player list
 
 
